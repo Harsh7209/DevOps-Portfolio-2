@@ -1,0 +1,2296 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harsh Choubey | Cloud Native & DevOps Engineer</title>
+    <meta
+      name="description"
+      content="Portfolio of Harsh Choubey, a Cloud Native and DevOps Architect specialized in Kubernetes, Docker, Terraform, and resilient cloud infrastructures."
+    />
+
+    <!-- Preconnect and Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+      /* ==========================================
+       1. GLOBAL RESET & BASE STYLES
+       ========================================== */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 80px; /* Account for sticky header */
+      }
+
+      :root {
+        /* Dark Theme Colors (Default) */
+        --bg-primary: #0a0e27;
+        --bg-secondary: #141629;
+        --bg-tertiary: #1a1f3a;
+        --accent-cyan: #00d9ff;
+        --accent-magenta: #a855f7;
+        --accent-pink: #ec4899;
+        --accent-blue: #3b82f6;
+        --text-primary: #ffffff;
+        --text-secondary: #d1d5db;
+        --glass-bg: rgba(255, 255, 255, 0.08);
+        --glass-bg-hover: rgba(255, 255, 255, 0.14);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --glass-border-hover: rgba(255, 255, 255, 0.25);
+        --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        --glass-shadow-hover: 0 12px 40px rgba(0, 217, 255, 0.25);
+        --nav-bg: rgba(10, 14, 39, 0.75);
+        --cursor-dot: #00d9ff;
+        --cursor-ring: #00d9ff;
+        --avatar-shadow: rgba(0, 217, 255, 0.3);
+      }
+
+      body.light-mode {
+        /* Light Theme Colors */
+        --bg-primary: #f8f9fa;
+        --bg-secondary: #ffffff;
+        --bg-tertiary: #f1f3f5;
+        --accent-cyan: #008eb3;
+        --accent-magenta: #7c3aed;
+        --accent-pink: #db2777;
+        --accent-blue: #2563eb;
+        --text-primary: #111827;
+        --text-secondary: #4b5563;
+        --glass-bg: rgba(255, 255, 255, 0.65);
+        --glass-bg-hover: rgba(255, 255, 255, 0.85);
+        --glass-border: rgba(0, 0, 0, 0.08);
+        --glass-border-hover: rgba(0, 0, 0, 0.18);
+        --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+        --glass-shadow-hover: 0 12px 40px rgba(0, 142, 179, 0.15);
+        --nav-bg: rgba(248, 249, 250, 0.8);
+        --cursor-dot: #008eb3;
+        --cursor-ring: #008eb3;
+        --avatar-shadow: rgba(0, 142, 179, 0.2);
+      }
+
+      body {
+        font-family: "Poppins", "Inter", sans-serif;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.6;
+        color: var(--text-primary);
+        background-color: var(--bg-primary);
+        overflow-x: hidden;
+        transition:
+          background-color 0.3s ease,
+          color 0.3s ease;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Poppins", sans-serif;
+        color: var(--text-primary);
+      }
+
+      h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 1.2;
+      }
+
+      h2 {
+        font-size: 2.25rem;
+        font-weight: 700;
+        margin-bottom: 2.5rem;
+        text-align: center;
+        position: relative;
+      }
+
+      h2::after {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--accent-cyan),
+          var(--accent-magenta)
+        );
+        margin: 0.75rem auto 0;
+        border-radius: 2px;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+
+      p {
+        color: var(--text-secondary);
+      }
+
+      /* Accessibility visible focus outlines */
+      a:focus-visible,
+      button:focus-visible {
+        outline: 3px solid var(--accent-cyan);
+        outline-offset: 4px;
+      }
+
+      /* ==========================================
+       2. LAYOUT & GRID UTILITIES
+       ========================================== */
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      section {
+        padding: 100px 0;
+        position: relative;
+      }
+
+      /* Background animated gradient container */
+      .bg-gradient-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -3;
+        background: linear-gradient(
+          -45deg,
+          var(--bg-primary),
+          var(--bg-secondary),
+          var(--bg-tertiary),
+          var(--bg-primary)
+        );
+        background-size: 400% 400%;
+        animation: gradientShift 22s ease infinite;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Floating blobs for depth and parallax */
+      .glow-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100px);
+        opacity: 0.12;
+        z-index: -2;
+        pointer-events: none;
+        will-change: transform;
+      }
+
+      body.light-mode .glow-blob {
+        opacity: 0.05;
+        filter: blur(120px);
+      }
+
+      .blob-1 {
+        top: 15%;
+        left: 5%;
+        width: 350px;
+        height: 350px;
+        background-color: var(--accent-cyan);
+      }
+
+      .blob-2 {
+        top: 45%;
+        right: 5%;
+        width: 450px;
+        height: 450px;
+        background-color: var(--accent-magenta);
+      }
+
+      .blob-3 {
+        bottom: 10%;
+        left: 15%;
+        width: 400px;
+        height: 400px;
+        background-color: var(--accent-blue);
+      }
+
+      /* ==========================================
+       3. GLASSMORPHISM STYLE SYSTEM
+       ========================================== */
+      .glass-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--glass-shadow);
+        border-radius: 16px;
+        transition:
+          background 0.3s ease,
+          border-color 0.3s ease,
+          box-shadow 0.3s ease,
+          transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .glass-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(255, 255, 255, 0.05),
+          transparent 60%
+        );
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .glass-card:hover {
+        background: var(--glass-bg-hover);
+        border-color: var(--glass-border-hover);
+        box-shadow: var(--glass-shadow-hover);
+      }
+
+      /* ==========================================
+       4. CUSTOM CURSOR
+       ========================================== */
+      .cursor-dot {
+        width: 12px;
+        height: 12px;
+        background-color: var(--cursor-dot);
+        position: fixed;
+        top: 0;
+        left: 0;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.2s,
+          height 0.2s,
+          background-color 0.2s;
+        will-change: left, top, transform;
+      }
+
+      .cursor-ring {
+        width: 40px;
+        height: 40px;
+        border: 2px solid var(--cursor-ring);
+        box-shadow: 0 0 20px var(--cursor-ring);
+        position: fixed;
+        top: 0;
+        left: 0;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        opacity: 0.5;
+        transition:
+          width 0.2s,
+          height 0.2s,
+          border-color 0.2s,
+          box-shadow 0.2s,
+          opacity 0.2s;
+        will-change: left, top, transform;
+      }
+
+      /* Hover States for Interactive Elements */
+      .cursor-dot.hovered {
+        background-color: var(--accent-pink);
+        width: 8px;
+        height: 8px;
+      }
+
+      .cursor-ring.hovered {
+        border-color: var(--accent-pink);
+        box-shadow: 0 0 20px var(--accent-pink);
+        width: 50px;
+        height: 50px;
+        opacity: 0.8;
+      }
+
+      /* Hide cursor elements on touch devices */
+      @media (hover: none) {
+        .cursor-dot,
+        .cursor-ring {
+          display: none !important;
+        }
+      }
+
+      /* ==========================================
+       5. 3D SCROLL REVEAL ANIMATIONS
+       ========================================== */
+      .reveal-container {
+        perspective: 1000px;
+      }
+
+      .reveal-3d {
+        opacity: 0;
+        transform: translateY(60px) translateZ(-100px) rotateX(8deg);
+        will-change: transform, opacity;
+        transition:
+          transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
+          opacity 0.8s ease;
+      }
+
+      .reveal-3d.active {
+        opacity: 1;
+        transform: translateY(0) translateZ(0) rotateX(0);
+      }
+
+      .stagger-item {
+        opacity: 0;
+        transform: translateY(40px) translateZ(-60px) rotateX(6deg);
+        will-change: transform, opacity;
+        transition:
+          transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
+          opacity 0.8s ease;
+      }
+
+      .stagger-item.active {
+        opacity: 1;
+        transform: translateY(0) translateZ(0) rotateX(0);
+      }
+
+      /* ==========================================
+       6. BUTTON STYLING
+       ========================================== */
+      .btn {
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        font-size: 0.95rem;
+        border-radius: 8px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s,
+          background 0.3s,
+          border-color 0.3s,
+          color 0.3s;
+        text-decoration: none;
+      }
+
+      .btn-primary {
+        background: linear-gradient(
+          135deg,
+          var(--accent-cyan),
+          var(--accent-magenta)
+        );
+        color: #ffffff;
+        border: none;
+        padding: 12px 32px;
+        box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: scale(1.05);
+        box-shadow:
+          0 0 40px rgba(0, 217, 255, 0.5),
+          0 0 20px rgba(168, 85, 247, 0.3);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--accent-cyan);
+        border: 2px solid var(--accent-cyan);
+        padding: 10px 28px;
+      }
+
+      .btn-secondary:hover {
+        background: rgba(0, 217, 255, 0.1);
+        box-shadow: 0 0 20px rgba(0, 217, 255, 0.25);
+      }
+
+      /* ==========================================
+       7. NAV NAVIGATION HEADER
+       ========================================== */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 80px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 8%;
+        z-index: 1000;
+        transition:
+          background-color 0.3s,
+          backdrop-filter 0.3s,
+          border-color 0.3s;
+      }
+
+      header.sticky {
+        background-color: var(--nav-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--glass-border);
+      }
+
+      .logo {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        text-decoration: none;
+        background: linear-gradient(
+          135deg,
+          var(--accent-cyan),
+          var(--accent-magenta)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -0.5px;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 2.25rem;
+        align-items: center;
+      }
+
+      .nav-link {
+        font-family: "Poppins", sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: color 0.3s;
+        position: relative;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--accent-cyan);
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--accent-cyan);
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 100%;
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .theme-toggle {
+        background: none;
+        border: none;
+        color: var(--text-primary);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem;
+        border-radius: 50%;
+        background-color: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        transition:
+          background-color 0.3s,
+          border-color 0.3s;
+        width: 42px;
+        height: 42px;
+      }
+
+      .theme-toggle:hover {
+        background-color: var(--glass-bg-hover);
+        border-color: var(--glass-border-hover);
+      }
+
+      .theme-toggle .moon-icon {
+        display: none;
+      }
+
+      body.light-mode .theme-toggle .sun-icon {
+        display: none;
+      }
+
+      body.light-mode .theme-toggle .moon-icon {
+        display: block;
+      }
+
+      .hamburger {
+        display: none;
+        cursor: pointer;
+        flex-direction: column;
+        gap: 6px;
+        border: none;
+        background: none;
+        padding: 0.5rem;
+        z-index: 1001;
+      }
+
+      .hamburger span {
+        display: block;
+        width: 25px;
+        height: 2px;
+        background-color: var(--text-primary);
+        transition:
+          transform 0.3s,
+          opacity 0.3s;
+      }
+
+      .hamburger.open span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      .hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.open span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+
+      /* ==========================================
+       8. HERO SECTION
+       ========================================== */
+      .hero-section {
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 120px;
+        text-align: center;
+        overflow: hidden;
+      }
+
+      .hero-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+      }
+
+      .hero-animate {
+        opacity: 0;
+        transform: translateY(40px) translateZ(-50px) rotateX(6deg);
+        will-change: transform, opacity;
+        transition:
+          transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
+          opacity 0.8s ease;
+      }
+
+      .hero-animate.loaded {
+        opacity: 1;
+        transform: translateY(0) translateZ(0) rotateX(0);
+      }
+
+      .hero-headline {
+        margin-bottom: 1rem;
+      }
+
+      .hero-headline span {
+        background: linear-gradient(
+          135deg,
+          var(--accent-cyan),
+          var(--accent-magenta)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero-subheading {
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        margin-bottom: 2.5rem;
+        max-width: 600px;
+      }
+
+      .hero-scroll-indicator {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-secondary);
+        text-decoration: none;
+        animation: bounceIndicator 2s infinite;
+        cursor: pointer;
+      }
+
+      @keyframes bounceIndicator {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0) translateX(-50%);
+        }
+        40% {
+          transform: translateY(-10px) translateX(-50%);
+        }
+        60% {
+          transform: translateY(-5px) translateX(-50%);
+        }
+      }
+
+      /* ==========================================
+       9. ABOUT SECTION
+       ========================================== */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 3rem;
+        align-items: center;
+      }
+
+      .about-card {
+        padding: 3rem;
+      }
+
+      .about-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 2rem;
+      }
+
+      .avatar-wrapper {
+        position: relative;
+        width: 320px;
+        height: 320px;
+        margin: 0 auto;
+        border-radius: 24px;
+        padding: 6px;
+        background: linear-gradient(
+          135deg,
+          var(--accent-cyan),
+          var(--accent-magenta)
+        );
+        box-shadow: 0 0 35px var(--avatar-shadow);
+        transition:
+          transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+          box-shadow 0.4s;
+      }
+
+      .avatar-wrapper:hover {
+        transform: scale(1.05);
+        box-shadow:
+          0 0 55px rgba(168, 85, 247, 0.5),
+          0 0 25px rgba(0, 217, 255, 0.35);
+      }
+
+      .avatar-image {
+        width: 100%;
+        height: 100%;
+        border-radius: 18px;
+        object-fit: cover;
+        display: block;
+        background-color: var(--bg-secondary);
+      }
+
+      /* ==========================================
+       10. SKILLS SECTION
+       ========================================== */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+      }
+
+      .skill-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 2.25rem 1.5rem;
+      }
+
+      .skill-card:hover {
+        transform: translateY(-8px);
+      }
+
+      .skill-icon-wrapper {
+        width: 76px;
+        height: 76px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--glass-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        color: var(--accent-cyan);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        transition:
+          transform 0.3s ease,
+          color 0.3s ease,
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .skill-card:hover .skill-icon-wrapper {
+        color: var(--accent-magenta);
+        border-color: var(--accent-magenta);
+        box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+        transform: scale(1.1) rotate(5deg);
+      }
+
+      .skill-icon-wrapper i,
+      .skill-icon-wrapper img {
+        width: 38px;
+        height: 38px;
+        object-fit: contain;
+        display: block;
+      }
+
+      .skill-title {
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .skill-desc {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        line-height: 1.5;
+      }
+
+      /* ==========================================
+       11. PROJECTS SECTION & IMAGE CAROUSEL
+       ========================================== */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      .project-card {
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+      }
+
+      .project-card:hover {
+        transform: translateY(-12px);
+      }
+
+      .carousel-container {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16/9;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+        background-color: #000000;
+        border: 1px solid var(--glass-border);
+      }
+
+      .carousel-track {
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+
+      .carousel-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .carousel-slide.active {
+        opacity: 1;
+        pointer-events: auto;
+        z-index: 2;
+      }
+
+      .carousel-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .carousel-prev,
+      .carousel-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(5, 7, 20, 0.65);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #ffffff;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        transition:
+          opacity 0.3s ease,
+          background-color 0.2s,
+          border-color 0.2s,
+          transform 0.2s;
+        z-index: 10;
+      }
+
+      .carousel-container:hover .carousel-prev,
+      .carousel-container:hover .carousel-next {
+        opacity: 1;
+      }
+
+      .carousel-prev:hover,
+      .carousel-next:hover {
+        background-color: var(--accent-cyan);
+        border-color: var(--accent-cyan);
+        transform: translateY(-50%) scale(1.1);
+      }
+
+      .carousel-prev {
+        left: 12px;
+      }
+      .carousel-next {
+        right: 12px;
+      }
+
+      .carousel-dots {
+        position: absolute;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 6px;
+        z-index: 10;
+      }
+
+      .carousel-dots .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.4);
+        cursor: pointer;
+        transition:
+          background-color 0.3s,
+          transform 0.3s;
+      }
+
+      .carousel-dots .dot.active {
+        background-color: var(--accent-cyan);
+        transform: scale(1.25);
+      }
+
+      .project-info {
+        padding: 0 0.5rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+
+      .project-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .project-desc {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        flex-grow: 1;
+      }
+
+      .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .tech-tag {
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 0.35rem 0.75rem;
+        border-radius: 20px;
+        background: rgba(0, 217, 255, 0.05);
+        border: 1px solid var(--glass-border);
+        color: var(--accent-cyan);
+        letter-spacing: 0.5px;
+      }
+
+      .project-actions {
+        margin-top: auto;
+      }
+
+      /* ==========================================
+       12. CERTIFICATIONS SECTION & LIGHTBOX
+       ========================================== */
+      .certifications-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+
+      .cert-card {
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .cert-card:hover {
+        transform: translateY(-16px);
+      }
+
+      .cert-img-container {
+        width: 100%;
+        height: 160px;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 1.25rem;
+        cursor: pointer;
+        position: relative;
+        border: 1px solid var(--glass-border);
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+
+      .cert-img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+        display: block;
+      }
+
+      .cert-img-container:hover img {
+        transform: scale(1.06);
+      }
+
+      .cert-img-container::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(10, 14, 39, 0.45);
+        backdrop-filter: blur(2px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .cert-img-container::before {
+        content: "🔍 Click to view";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #ffffff;
+        font-size: 0.85rem;
+        font-weight: 600;
+        z-index: 2;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 0.35rem 0.75rem;
+        border-radius: 4px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        pointer-events: none;
+      }
+
+      .cert-img-container:hover::after,
+      .cert-img-container:hover::before {
+        opacity: 1;
+      }
+
+      .cert-title {
+        font-size: 1.15rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+      }
+
+      .cert-meta {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        display: flex;
+        justify-content: space-between;
+        margin-top: auto;
+        border-top: 1px solid var(--glass-border);
+        padding-top: 0.75rem;
+      }
+
+      /* Lightbox Modal */
+      .lightbox-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(5, 7, 20, 0.94);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2000;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+
+      .lightbox-modal.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .lightbox-content {
+        max-width: 85%;
+        max-height: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .lightbox-content img {
+        max-width: 100%;
+        max-height: 70vh;
+        border-radius: 12px;
+        box-shadow: 0 0 50px rgba(0, 217, 255, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        transform: scale(0.9);
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      .lightbox-modal.open img {
+        transform: scale(1);
+      }
+
+      .lightbox-caption {
+        color: #ffffff;
+        font-family: "Poppins", sans-serif;
+        text-align: center;
+        font-size: 1.25rem;
+        font-weight: 600;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        background: none;
+        border: none;
+        color: #ffffff;
+        cursor: pointer;
+        transition:
+          color 0.2s,
+          transform 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem;
+      }
+
+      .lightbox-close:hover {
+        color: var(--accent-cyan);
+        transform: scale(1.15);
+      }
+
+      .lightbox-close i {
+        width: 36px;
+        height: 36px;
+      }
+
+      /* ==========================================
+       13. SOCIAL LINKS & FOOTER
+       ========================================== */
+      .contact-section {
+        text-align: center;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 3.5rem;
+      }
+
+      .social-banner {
+        display: flex;
+        flex-direction: column;
+        padding: 2.25rem 1.75rem;
+        text-align: left;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .social-banner:hover {
+        transform: translateY(-8px);
+      }
+
+      .banner-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .banner-icon-wrapper {
+        width: 54px;
+        height: 54px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--glass-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent-cyan);
+        transition:
+          transform 0.3s ease,
+          color 0.3s ease,
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .social-banner:hover .banner-icon-wrapper {
+        color: var(--accent-magenta);
+        border-color: var(--accent-magenta);
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 0 15px rgba(168, 85, 247, 0.25);
+      }
+
+      .banner-icon-wrapper i {
+        width: 26px;
+        height: 26px;
+      }
+
+      .banner-title-group {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .banner-platform {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .banner-handle {
+        font-size: 0.8rem;
+        color: var(--accent-cyan);
+        font-weight: 600;
+      }
+
+      .banner-desc {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+        flex-grow: 1;
+      }
+
+      .banner-btn-text {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--accent-cyan);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        transition:
+          color 0.2s,
+          transform 0.2s;
+      }
+
+      .social-banner:hover .banner-btn-text {
+        color: var(--accent-magenta);
+      }
+
+      .social-banner:hover .banner-btn-text i {
+        transform: translateX(4px);
+      }
+
+      .banner-btn-text i {
+        width: 16px;
+        height: 16px;
+        transition: transform 0.2s;
+      }
+
+      footer {
+        background-color: rgba(5, 7, 20, 0.4);
+        border-top: 1px solid var(--glass-border);
+        padding: 40px 20px;
+        text-align: center;
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+      }
+
+      /* ==========================================
+       14. RESPONSIVE MEDIA QUERIES
+       ========================================== */
+      @media (max-width: 1279px) and (min-width: 768px) {
+        /* Tablet */
+        body {
+          font-size: 0.95rem;
+        }
+        h1 {
+          font-size: 3rem;
+        }
+        h2 {
+          font-size: 2rem;
+        }
+        .container {
+          padding: 0 40px;
+        }
+        header {
+          padding: 0 6%;
+        }
+        .about-grid {
+          gap: 2rem;
+        }
+        .skills-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .certifications-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 767px) {
+        /* Mobile */
+        body {
+          font-size: 0.9rem;
+          scroll-padding-top: 70px;
+        }
+        h1 {
+          font-size: 2.35rem;
+        }
+        h2 {
+          font-size: 1.75rem;
+          margin-bottom: 2rem;
+        }
+        h3 {
+          font-size: 1.25rem;
+        }
+        section {
+          padding: 60px 0;
+        }
+        header {
+          padding: 0 6%;
+          height: 70px;
+        }
+        .nav-menu {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 260px;
+          height: 100vh;
+          background-color: var(--bg-secondary);
+          backdrop-filter: blur(25px);
+          -webkit-backdrop-filter: blur(25px);
+          border-left: 1px solid var(--glass-border);
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 2rem;
+          transition: right 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+          z-index: 999;
+          box-shadow: -8px 0 32px rgba(0, 0, 0, 0.3);
+        }
+        .nav-menu.open {
+          right: 0;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+        .about-card {
+          padding: 2rem;
+        }
+        .avatar-wrapper {
+          width: 250px;
+          height: 250px;
+        }
+        .skills-grid {
+          grid-template-columns: 1fr;
+          gap: 1.25rem;
+        }
+        .projects-grid {
+          grid-template-columns: 1fr;
+          gap: 1.75rem;
+        }
+        .certifications-grid {
+          grid-template-columns: 1fr;
+          gap: 1.25rem;
+        }
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 1.25rem;
+          margin-top: 2.5rem;
+        }
+        .social-link {
+          width: 50px;
+          height: 50px;
+        }
+        .social-link i {
+          width: 24px;
+          height: 24px;
+        }
+        .lightbox-close {
+          top: 20px;
+          right: 20px;
+        }
+        .lightbox-close i {
+          width: 28px;
+          height: 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Background Shift -->
+    <div class="bg-gradient-container"></div>
+
+    <!-- Glowing Parallax Blobs -->
+    <div class="glow-blob blob-1"></div>
+    <div class="glow-blob blob-2"></div>
+    <div class="glow-blob blob-3"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <!-- Sticky Header Nav -->
+    <header id="main-header">
+      <a href="#home" class="logo">Harsh Choubey.</a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#certifications" class="nav-link">Certifications</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          aria-label="Toggle light and dark mode"
+        >
+          <i data-lucide="sun" class="sun-icon"></i>
+          <i data-lucide="moon" class="moon-icon"></i>
+        </button>
+
+        <button
+          class="hamburger"
+          id="hamburger-btn"
+          aria-label="Open Mobile Menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section id="home" class="hero-section">
+        <div class="container hero-container">
+          <h1 class="hero-headline hero-animate">
+            Hi, I'm <span id="hero-name">Harsh Choubey</span>
+          </h1>
+          <p class="hero-subheading hero-animate" id="hero-title">
+            Cloud Native & DevOps Engineer | Kubernetes, Terraform, AWS
+            Specialist
+          </p>
+          <div class="hero-animate" style="transition-delay: 0.4s">
+            <a href="#projects" class="btn btn-primary">Explore My Work</a>
+          </div>
+
+          <a
+            href="#about"
+            class="hero-scroll-indicator"
+            aria-label="Scroll to About Section"
+          >
+            <span>Scroll Down</span>
+            <i data-lucide="chevrons-down"></i>
+          </a>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="reveal-container">
+        <div class="container">
+          <h2 class="reveal-3d">About Me</h2>
+          <div class="about-grid">
+            <div class="glass-card about-card stagger-item">
+              <p class="about-text" id="about-bio">
+                I am a DevOps Engineer specialized in building, scaling, and
+                orchestrating resilient cloud-native infrastructures. With a
+                passion for automation, continuous delivery, and
+                infrastructure-as-code, I transform complex deployments into
+                streamlined, self-healing systems.
+              </p>
+              <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+            <div class="stagger-item">
+              <div class="avatar-wrapper">
+                <img
+                  id="about-photo"
+                  src="profile_photo.png"
+                  alt="Profile"
+                  class="avatar-image"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section id="skills" class="reveal-container">
+        <div class="container">
+          <h2 class="reveal-3d">Technical Skills</h2>
+          <div class="skills-grid" id="skills-grid">
+            <!-- Dynamic Content -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="reveal-container">
+        <div class="container">
+          <h2 class="reveal-3d">Featured Projects</h2>
+          <div class="projects-grid" id="projects-grid">
+            <!-- Dynamic Content -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Certifications Section -->
+      <section id="certifications" class="reveal-container">
+        <div class="container">
+          <h2 class="reveal-3d">Certifications</h2>
+          <div class="certifications-grid" id="certifications-grid">
+            <!-- Dynamic Content -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact / Socials Section -->
+      <section id="contact" class="contact-section reveal-container">
+        <div class="container">
+          <h2 class="reveal-3d">Connect With Me</h2>
+          <p class="stagger-item" style="max-width: 600px; margin: 0 auto">
+            I am currently open to consulting opportunities, new roles, or
+            collaboration on open-source DevOps tooling. Let's build something
+            scalable together!
+          </p>
+
+          <div class="contact-grid stagger-item" id="socials-container">
+            <!-- Dynamic Content -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Certificate Lightbox Modal -->
+    <div class="lightbox-modal" id="lightbox-modal">
+      <button
+        class="lightbox-close"
+        id="lightbox-close"
+        aria-label="Close Lightbox"
+      >
+        <i data-lucide="x"></i>
+      </button>
+      <div class="lightbox-content">
+        <img id="lightbox-img" src="" alt="Full-size Certificate View" />
+        <h3 class="lightbox-caption" id="lightbox-caption">Certificate View</h3>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>
+        &copy; <span id="current-year">2026</span> Alex Thorne. All Rights
+        Reserved. Built with Glassmorphic Design principles.
+      </p>
+    </footer>
+
+    <!-- ==========================================
+       15. DATA STRUCTURE & JAVASCRIPT APPLICATION LOGIC
+       ========================================== -->
+    <script>
+      // Easily editable portfolio data object
+      const portfolioData = {
+        name: "Harsh Choubey",
+        title: "Cloud Native & DevOps Architect",
+        about:
+          "DevOps Engineer with hands-on experience in Kubernetes, Docker, AWS, Terraform, Ansible, and GitHub Actions, building scalable cloud-native solutions. Reduced deployment time by 85% through automated CI/CD pipelines and cut infrastructure provisioning from 4 hours to 15 minutes using Infrastructure as Code. Improved pod recovery time by over 80% through self-healing Kubernetes workflows and optimized container orchestration strategies. Achieved 99.9% service availability while reducing release windows from 2 hours to 12 minutes. Standardized Kubernetes deployments, lowering deployment inconsistencies by 85%, and implemented monitoring solutions that reduced incident response time by 65%. Experienced in GitOps, observability, and Agentic AI-driven automation, with a strong focus on reliability, scalability, and operational excellence.",
+        photo: "profile2.png",
+
+        skills: [
+          {
+            name: "Linux Systems",
+            icon: "icons/linux-logo.png",
+            desc: "Enterprise system administration, bash scripting, kernel parameter tuning, and performance optimization.",
+          },
+
+          {
+            name: "Bash & Shell Scripting",
+            icon: "icons/bash-logo.png",
+            desc: "Developing automation scripts, system bootstrap configurations, and operational shortcuts.",
+          },
+          {
+            name: "Python Scripting",
+            icon: "icons/python-logo.png",
+            desc: "Writing backend utility tools, REST API handlers, and automation controllers.",
+          },
+          {
+            name: "GitHub Actions",
+            icon: "icons/github action-logo.png",
+            desc: "Automating integration tests, Docker builds, and cloud-native deployment pipelines.",
+          },
+          {
+            name: "Kubernetes",
+            icon: "icons/kubernetes-logo.png",
+            desc: "Container orchestration, Helm charting, service discovery, and cluster scaling.",
+          },
+          {
+            name: "Docker",
+            icon: "icons/docker-logo.png",
+            desc: "Multi-stage building, optimization, and microservice containerization.",
+          },
+          {
+            name: "AWS Cloud",
+            icon: "icons/aws-logo.png",
+            desc: "EKS, VPC architecture, IAM administration, RDS, S3, and Route53 management.",
+          },
+          {
+            name: "Terraform",
+            icon: "icons/terraform-logo.png",
+            desc: "Infrastructure as Code (IaC), state management, modules, and cross-provider config.",
+          },
+          {
+            name: "CI/CD Pipelines",
+            icon: "icons/cicd-logo.png",
+            desc: "GitHub Actions, GitLab CI, and Jenkins declarative pipeline automation.",
+          },
+          {
+            name: "Prometheus ",
+            icon: "icons/prometheus-logo.png",
+            desc: "Cluster monitoring, alerting rules, query dashboard creation, and log aggregation.",
+          },
+          {
+            name: "Grafana Dashboards",
+            icon: "icons/grafana-logo.png",
+            desc: "Designing interactive dashboards to visualize real-time cluster metrics, tracking resource usage, and implementing alert thresholds.",
+          },
+        ],
+
+        projects: [
+          {
+            title:
+              "Real-Time Scalable FinTech Banking System with Agentic AI Integration",
+            desc: "Engineered a cloud-native FinTech banking platform on AWS EKS using Kubernetes, Docker, Terraform, and ArgoCD, improving application scalability by 60% and enabling 100% automated GitOps-based deployments. Automated infrastructure provisioning through Infrastructure as Code, reducing environment setup time from 4 hours to 15 minutes, while optimizing Kubernetes workloads to improve pod recovery time by 60% and enhance overall platform reliability.",
+            images: [
+              "project1-images/1.png",
+              "project1-images/2.png",
+              "project1-images/3.png",
+              "project1-images/4.png",
+              "project1-images/5.png",
+              "project1-images/6.png",
+              "project1-images/7.png",
+            ],
+            tech: ["Kubernetes", "Prometheus", "Grafana", "Go", "Docker"],
+            link: "https://github.com/Harsh7209/Project-1.git",
+          },
+          {
+            title: "KubeCart – Kubernetes-Powered E-Commerce Platform",
+            desc: "Built a production-ready cloud-native e-commerce platform by designing and implementing the complete DevOps ecosystem, including AWS-based infrastructure, container orchestration, CI/CD automation, GitOps workflows, and observability pipelines. Automated application delivery using GitHub Actions and GitOps practices, reducing deployment time by **85%** and enabling **100% deployment consistency** across environments. Provisioned infrastructure using Infrastructure as Code, cutting environment setup time from **hours to minutes**, while implementing Kubernetes-based scalability and self-healing mechanisms that improved application availability to **99.9%** and reduced recovery time by **80%**. Integrated Prometheus and Grafana monitoring, improving incident detection and reducing troubleshooting time by **65%**, resulting in a highly scalable, resilient, and production-ready platform.",
+            images: [
+              "project2-image/1.png",
+              "project2-image/2.png",
+              "project2-image/3.png",
+              "project2-image/4.png",
+              "project2-image/5.png",
+              "project2-image/6.png",
+              "project2-image/7.png",
+              "project2-image/8.png",
+              "project2-image/9.png",
+            ],
+            tech: ["Terraform", "AWS", "EKS", "Ansible", "Kubernetes"],
+            link: "https://github.com/Harsh7209/Project-2.git",
+          },
+          {
+            title: "KubeBlog – Kubernetes-Powered Blogging Platform",
+            desc: "Designed and automated the deployment of a containerized blogging platform using Docker, Kubernetes, and GitHub Actions. Reduced deployment time by 85% through fully automated CI/CD pipelines, implemented backup and disaster recovery workflows that lowered recovery time to under 10 minutes, and maintained 99.9% service availability through secure SSL/TLS ingress configurations and resilient Kubernetes architecture.",
+            images: [
+              "project3-image/1.png",
+              "project3-image/2.png",
+              "project3-image/3.png",
+              "project3-image/4.png",
+              "project3-image/5.png",
+            ],
+            tech: [
+              "Kubernetes",
+              "Docker",
+              "GitHub Actions",
+              "NGINX Ingress",
+              "Cert-Manager",
+              "Prometheus",
+              "Grafana",
+              "Linux",
+            ],
+            link: "https://github.com/Harsh7209/Project-3.git",
+          },
+          {
+            title: "SkillPulse – Cloud-Native Learning Tracker on AWS EKS",
+            desc: "Built and deployed a scalable learning management platform on AWS EKS with Kubernetes-native auto-scaling, rolling updates, and cloud-native observability. Optimized release strategies to reduce deployment-related service interruptions from 15 minutes to under 2 minutes, standardized deployments with Helm charts to decrease configuration inconsistencies by 85%, and improved incident resolution time by 50% through Prometheus and Grafana-based monitoring.",
+            images: [
+              "project4-image/1.png",
+              "project4-image/2.png",
+              "project4-image/3.png",
+              "project4-image/4.png",
+              "project4-image/5.png",
+            ],
+            tech: [
+              "AWS EKS",
+              "Kubernetes",
+              "Docker",
+              "Helm",
+              "GitHub Actions",
+              "MySQL",
+              "Prometheus",
+              "Grafana",
+            ],
+            link: "https://github.com/Harsh7209/Project-4.git",
+          },
+          {
+            title: "Docker Troubleshooter Agent ⭐ (best if already on GitHub)",
+            desc: "Developed a ReAct-based Agentic AI system that autonomously diagnoses and troubleshoots Docker container environments through natural language interactions. Engineered an intelligent tool-calling workflow that analyzes container states, logs, networking, and runtime configurations, eliminating manual troubleshooting steps and reducing issue investigation time by up to **70%**. Integrated autonomous reasoning and multi-step decision-making capabilities, enabling the agent to identify root causes, execute relevant diagnostic commands, and generate actionable recommendations with minimal human intervention. Designed as a fully local, privacy-focused solution, the platform streamlines Docker operations, improves debugging efficiency, and accelerates incident resolution across containerized environments.",
+            images: [
+              "project5-image/1.png",
+              "project5-image/2.png",
+              "project5-image/3.png",
+              "project5-image/4.png",
+            ],
+            tech: [
+              "Python",
+              "LangChain",
+              "Ollama",
+              "Docker",
+              "ReAct Agent",
+              "Agentic AI",
+              "LLMs",
+              "Linux",
+              "Shell Scripting",
+            ],
+            link: "https://github.com/Harsh7209/Docker-TroubleShooting-Agent.git",
+          },
+        ],
+
+        certifications: [
+          {
+            name: "Certified Kubernetes Administrator (CKA)",
+            org: "The Linux Foundation",
+            date: "August 2024",
+            image: "certificate_kubernetes.png",
+          },
+          {
+            name: "DevOps Engineer Professional",
+            org: "Udemy",
+            date: "June 2024",
+            image: "certificate_devops.png",
+          },
+        ],
+
+        socials: [
+          {
+            platform: "LinkedIn",
+            url: "https://linkedin.com/in/alex-thorne-devops",
+            icon: "linkedin",
+            handle: "Alex Thorne",
+            desc: "Connect professionally, discuss system architectures, or share cloud DevOps strategies.",
+            btnText: "Connect on LinkedIn",
+          },
+          {
+            platform: "GitHub",
+            url: "https://github.com/alexthorne",
+            icon: "github",
+            handle: "@alexthorne",
+            desc: "Explore open-source infrastructure projects, Terraform modules, and EKS setups.",
+            btnText: "Follow on GitHub",
+          },
+          {
+            platform: "Gmail",
+            url: "mailto:alex.thorne.devops@gmail.com",
+            icon: "mail",
+            handle: "alex.thorne.devops@gmail.com",
+            desc: "Send an inquiry or scheduling request for consulting work, audits, or full-time roles.",
+            btnText: "Send Email",
+          },
+        ],
+      };
+
+      // ==========================================
+      // DOM LOADING & RENDERING
+      // ==========================================
+      document.addEventListener("DOMContentLoaded", () => {
+        // Setup Footer Year
+        document.getElementById("current-year").textContent =
+          new Date().getFullYear();
+
+        // Render all portfolio content
+        renderPortfolio();
+
+        // Theme Setup
+        initTheme();
+
+        // Setup Scroll effects
+        initScrollListeners();
+
+        // Custom cursor loop
+        initCustomCursor();
+
+        // Trigger initial page-load hero staggers
+        const heroAnimates = document.querySelectorAll(".hero-animate");
+        heroAnimates.forEach((el, index) => {
+          setTimeout(
+            () => {
+              el.classList.add("loaded");
+            },
+            index * 200 + 100,
+          );
+        });
+      });
+
+      function renderPortfolio() {
+        // 1. Hero Content
+        document.getElementById("hero-name").textContent = portfolioData.name;
+        document.getElementById("hero-title").textContent = portfolioData.title;
+
+        // 2. About Content
+        document.getElementById("about-bio").textContent = portfolioData.about;
+        const photoEl = document.getElementById("about-photo");
+        if (photoEl) {
+          photoEl.src = portfolioData.photo;
+          photoEl.alt = `${portfolioData.name} - Profile Picture`;
+        }
+
+        // 3. Technical Skills
+        const skillsGrid = document.getElementById("skills-grid");
+        skillsGrid.innerHTML = "";
+        portfolioData.skills.forEach((skill) => {
+          const card = document.createElement("div");
+          card.className = "glass-card skill-card stagger-item";
+
+          // Check if icon is an image file path (ends with extension or contains folders)
+          const isImagePath =
+            /\.(png|jpe?g|svg|webp|gif)($|\?)/i.test(skill.icon.trim()) ||
+            skill.icon.includes("/");
+          const iconHtml = isImagePath
+            ? `<img src="${skill.icon.trim()}" alt="${skill.name} logo">`
+            : `<i data-lucide="${skill.icon}"></i>`;
+
+          card.innerHTML = `
+          <div class="skill-icon-wrapper">
+            ${iconHtml}
+          </div>
+          <h3 class="skill-title">${skill.name}</h3>
+          <p class="skill-desc">${skill.desc}</p>
+        `;
+          skillsGrid.appendChild(card);
+        });
+
+        // 4. Projects Grid
+        const projectsGrid = document.getElementById("projects-grid");
+        projectsGrid.innerHTML = "";
+        portfolioData.projects.forEach((proj) => {
+          const card = document.createElement("div");
+          card.className = "glass-card project-card stagger-item";
+
+          let slidesHtml = "";
+          proj.images.forEach((img, i) => {
+            slidesHtml += `
+            <div class="carousel-slide ${i === 0 ? "active" : ""}">
+              <img src="${img}" alt="${proj.title} screenshot ${i + 1}" loading="lazy">
+            </div>
+          `;
+          });
+
+          let tagsHtml = "";
+          proj.tech.forEach((t) => {
+            tagsHtml += `<span class="tech-tag">${t}</span>`;
+          });
+
+          card.innerHTML = `
+          <div class="carousel-container">
+            <div class="carousel-track">
+              ${slidesHtml}
+            </div>
+            <button class="carousel-prev" aria-label="Previous image"><i data-lucide="chevron-left"></i></button>
+            <button class="carousel-next" aria-label="Next image"><i data-lucide="chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">${proj.title}</h3>
+            <p class="project-desc">${proj.desc}</p>
+            <div class="project-tech">
+              ${tagsHtml}
+            </div>
+            <div class="project-actions">
+              <a href="${proj.link}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                <i data-lucide="github"></i> View Project
+              </a>
+            </div>
+          </div>
+        `;
+          projectsGrid.appendChild(card);
+        });
+
+        // 5. Certifications Grid
+        const certsGrid = document.getElementById("certifications-grid");
+        certsGrid.innerHTML = "";
+        portfolioData.certifications.forEach((cert) => {
+          const card = document.createElement("div");
+          card.className = "glass-card cert-card stagger-item";
+          card.innerHTML = `
+          <div class="cert-img-container" aria-label="Open ${cert.name} certificate image in lightbox">
+            <img src="${cert.image}" alt="${cert.name} certification thumbnail" loading="lazy">
+          </div>
+          <h3 class="cert-title">${cert.name}</h3>
+          <div class="cert-meta">
+            <span class="cert-org">${cert.org}</span>
+            <span class="cert-date">${cert.date}</span>
+          </div>
+        `;
+          // Setup direct lightbox click listener
+          card
+            .querySelector(".cert-img-container")
+            .addEventListener("click", () => {
+              openLightbox(cert.image, cert.name);
+            });
+          certsGrid.appendChild(card);
+        });
+
+        // 6. Social Connections (Banners)
+        const socialsContainer = document.getElementById("socials-container");
+        socialsContainer.innerHTML = "";
+        portfolioData.socials.forEach((soc) => {
+          const banner = document.createElement("a");
+          banner.href = soc.url;
+          banner.className = "glass-card social-banner";
+          banner.target = "_blank";
+          banner.rel = "noopener noreferrer";
+          banner.setAttribute("aria-label", `${soc.platform} Profile`);
+
+          banner.innerHTML = `
+          <div class="banner-header">
+            <div class="banner-icon-wrapper">
+              <i data-lucide="${soc.icon}"></i>
+            </div>
+            <div class="banner-title-group">
+              <span class="banner-platform">${soc.platform}</span>
+              <span class="banner-handle">${soc.handle}</span>
+            </div>
+          </div>
+          <p class="banner-desc">${soc.desc}</p>
+          <div class="banner-btn-text">
+            <span>${soc.btnText}</span>
+            <i data-lucide="arrow-right"></i>
+          </div>
+        `;
+          socialsContainer.appendChild(banner);
+        });
+
+        // Execute Lucide renders and bind interactives
+        lucide.createIcons();
+        initCarousels();
+        initCardGlowEffects();
+        initRevealAnimations();
+        initCursorHoverEffects();
+        initMobileNav();
+        initLightbox();
+      }
+
+      // ==========================================
+      // LIGHT/DARK MODE IMPLEMENTATION
+      // ==========================================
+      function initTheme() {
+        const themeToggle = document.getElementById("theme-toggle");
+        const savedTheme = localStorage.getItem("theme");
+
+        const setLight = (isLight) => {
+          if (isLight) {
+            document.body.classList.add("light-mode");
+          } else {
+            document.body.classList.remove("light-mode");
+          }
+        };
+
+        // Set initial theme
+        if (savedTheme) {
+          setLight(savedTheme === "light");
+        } else {
+          const prefersLight = window.matchMedia(
+            "(prefers-color-scheme: light)",
+          ).matches;
+          setLight(prefersLight);
+        }
+
+        themeToggle.addEventListener("click", () => {
+          document.body.classList.toggle("light-mode");
+          const isLight = document.body.classList.contains("light-mode");
+          localStorage.setItem("theme", isLight ? "light" : "dark");
+        });
+      }
+
+      // ==========================================
+      // STICKY HEADER & SCROLL SPY & PARALLAX
+      // ==========================================
+      function initScrollListeners() {
+        const header = document.getElementById("main-header");
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        // Debounced scroll listener logic
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+
+        window.addEventListener(
+          "scroll",
+          () => {
+            lastScrollY = window.scrollY;
+            if (!ticking) {
+              window.requestAnimationFrame(() => {
+                handleScroll(lastScrollY);
+                ticking = false;
+              });
+              ticking = true;
+            }
+          },
+          { passive: true },
+        );
+
+        function handleScroll(scrolled) {
+          // Sticky navigation glass update
+          if (scrolled > 50) {
+            header.classList.add("sticky");
+          } else {
+            header.classList.remove("sticky");
+          }
+
+          // Parallax updates for floating blobs
+          const blob1 = document.querySelector(".blob-1");
+          const blob2 = document.querySelector(".blob-2");
+          const blob3 = document.querySelector(".blob-3");
+
+          if (blob1) blob1.style.transform = `translateY(${scrolled * 0.25}px)`;
+          if (blob2) blob2.style.transform = `translateY(${scrolled * 0.15}px)`;
+          if (blob3) blob3.style.transform = `translateY(${scrolled * 0.2}px)`;
+
+          // Scroll Spy section highlight
+          let currentSectionId = "";
+          sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (scrolled >= sectionTop - 150) {
+              currentSectionId = section.getAttribute("id");
+            }
+          });
+
+          navLinks.forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === `#${currentSectionId}`) {
+              link.classList.add("active");
+            }
+          });
+        }
+      }
+
+      // ==========================================
+      // MOBILE NAVIGATION
+      // ==========================================
+      function initMobileNav() {
+        const hamburger = document.getElementById("hamburger-btn");
+        const navMenu = document.querySelector(".nav-menu");
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        hamburger.addEventListener("click", () => {
+          const isOpen = navMenu.classList.toggle("open");
+          hamburger.classList.toggle("open");
+          hamburger.setAttribute("aria-expanded", isOpen);
+        });
+
+        // Close menu when a navigation item is clicked
+        navLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            navMenu.classList.remove("open");
+            hamburger.classList.remove("open");
+            hamburger.setAttribute("aria-expanded", "false");
+          });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener("click", (e) => {
+          if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+            navMenu.classList.remove("open");
+            hamburger.classList.remove("open");
+            hamburger.setAttribute("aria-expanded", "false");
+          }
+        });
+      }
+
+      // ==========================================
+      // CUSTOM MOUSE CURSOR
+      // ==========================================
+      function initCustomCursor() {
+        const dot = document.querySelector(".cursor-dot");
+        const ring = document.querySelector(".cursor-ring");
+
+        let mouseX = -100;
+        let mouseY = -100;
+        let ringX = -100;
+        let ringY = -100;
+
+        window.addEventListener("mousemove", (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          dot.style.left = `${mouseX}px`;
+          dot.style.top = `${mouseY}px`;
+        });
+
+        function animateTrailingRing() {
+          const dx = mouseX - ringX;
+          const dy = mouseY - ringY;
+
+          // Linear interpolation for smooth lag trailing effect (0.15 velocity)
+          ringX += dx * 0.15;
+          ringY += dy * 0.15;
+
+          ring.style.left = `${ringX}px`;
+          ring.style.top = `${ringY}px`;
+
+          requestAnimationFrame(animateTrailingRing);
+        }
+
+        animateTrailingRing();
+      }
+
+      function initCursorHoverEffects() {
+        const dot = document.querySelector(".cursor-dot");
+        const ring = document.querySelector(".cursor-ring");
+
+        // Target interactive items
+        const interactives = document.querySelectorAll(
+          "a, button, .carousel-prev, .carousel-next, .cert-img-container, .dot",
+        );
+
+        interactives.forEach((el) => {
+          el.addEventListener("mouseenter", () => {
+            dot.classList.add("hovered");
+            ring.classList.add("hovered");
+          });
+          el.addEventListener("mouseleave", () => {
+            dot.classList.remove("hovered");
+            ring.classList.remove("hovered");
+          });
+        });
+      }
+
+      // ==========================================
+      // GLASS CARD SPOTLIGHT GLOW
+      // ==========================================
+      function initCardGlowEffects() {
+        document.querySelectorAll(".glass-card").forEach((card) => {
+          card.addEventListener("mousemove", (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty("--mouse-x", `${x}px`);
+            card.style.setProperty("--mouse-y", `${y}px`);
+          });
+        });
+      }
+
+      // ==========================================
+      // Intersection Observer (3D Scroll Animations)
+      // ==========================================
+      function initRevealAnimations() {
+        const revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+
+                // Stagger children
+                const staggerItems =
+                  entry.target.querySelectorAll(".stagger-item");
+                staggerItems.forEach((item, index) => {
+                  item.style.transitionDelay = `${index * 0.1}s`;
+                  item.classList.add("active");
+                });
+
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px",
+          },
+        );
+
+        document.querySelectorAll(".reveal-container").forEach((el) => {
+          revealObserver.observe(el);
+        });
+
+        // Setup the base reveal active on sections
+        document.querySelectorAll(".reveal-3d").forEach((el) => {
+          revealObserver.observe(el.parentElement.parentElement);
+        });
+      }
+
+      // ==========================================
+      // PROJECTS IMAGE CAROUSEL
+      // ==========================================
+      function initCarousels() {
+        document
+          .querySelectorAll(".carousel-container")
+          .forEach((container) => {
+            const slides = container.querySelectorAll(".carousel-slide");
+            const prevBtn = container.querySelector(".carousel-prev");
+            const nextBtn = container.querySelector(".carousel-next");
+            const dotsContainer = container.querySelector(".carousel-dots");
+
+            let slideIndex = 0;
+
+            // Empty out and generate dots dynamically based on child length
+            dotsContainer.innerHTML = "";
+            slides.forEach((_, i) => {
+              const dot = document.createElement("span");
+              dot.className = `dot ${i === 0 ? "active" : ""}`;
+              dot.addEventListener("click", () => {
+                changeSlide(i);
+              });
+              dotsContainer.appendChild(dot);
+            });
+
+            const dots = dotsContainer.querySelectorAll(".dot");
+
+            function changeSlide(index) {
+              slides[slideIndex].classList.remove("active");
+              dots[slideIndex].classList.remove("active");
+
+              slideIndex = index;
+
+              if (slideIndex >= slides.length) slideIndex = 0;
+              if (slideIndex < 0) slideIndex = slides.length - 1;
+
+              slides[slideIndex].classList.add("active");
+              dots[slideIndex].classList.add("active");
+            }
+
+            prevBtn.addEventListener("click", (e) => {
+              e.stopPropagation();
+              changeSlide(slideIndex - 1);
+            });
+
+            nextBtn.addEventListener("click", (e) => {
+              e.stopPropagation();
+              changeSlide(slideIndex + 1);
+            });
+          });
+      }
+
+      // ==========================================
+      // CERTIFICATION LIGHTBOX
+      // ==========================================
+      function initLightbox() {
+        const modal = document.getElementById("lightbox-modal");
+        const closeBtn = document.getElementById("lightbox-close");
+        const modalImg = document.getElementById("lightbox-img");
+        const modalCaption = document.getElementById("lightbox-caption");
+
+        window.openLightbox = function (imageSrc, title) {
+          modalImg.src = imageSrc;
+          modalCaption.textContent = title;
+          modal.classList.add("open");
+          document.body.style.overflow = "hidden"; // Lock background scrolling
+        };
+
+        const closeLightbox = () => {
+          modal.classList.remove("open");
+          document.body.style.overflow = "";
+        };
+
+        closeBtn.addEventListener("click", closeLightbox);
+
+        // Close on clicking overlay background
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            closeLightbox();
+          }
+        });
+
+        // Escape key closing
+        window.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            closeLightbox();
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
