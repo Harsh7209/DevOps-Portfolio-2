@@ -1778,7 +1778,7 @@
           },
           {
             platform: "GitHub",
-            url: "https://github.com/alexthorne",
+            url: "https://github.com/Harsh7209",
             icon: "icons/github.png",
             handle: "@alexthorne",
             desc: "Explore open-source infrastructure projects, Terraform modules, and EKS setups.",
@@ -1950,7 +1950,12 @@
           banner.innerHTML = `
           <div class="banner-header">
             <div class="banner-icon-wrapper">
-              <i data-lucide="${soc.icon}"></i>
+              ${
+                /\.(png|jpe?g|svg|webp|gif)($|\?)/i.test(soc.icon.trim()) ||
+                soc.icon.includes("/")
+                  ? `<img src="${soc.icon.trim()}" alt="${soc.platform} logo" style="width: 26px; height: 26px; object-fit: contain;">`
+                  : `<i data-lucide="${soc.icon}"></i>`
+              }
             </div>
             <div class="banner-title-group">
               <span class="banner-platform">${soc.platform}</span>
